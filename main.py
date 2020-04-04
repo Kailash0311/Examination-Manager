@@ -4,6 +4,7 @@ import threading
 
 from MainFrame import MainFrame
 from algorithms import RoomAllotment
+from algorithms.Misc.RoomAllotment import start_room_allotment_verify_process
 from algorithms.SeatingArrangement.main import start_seating_arrangement_process
 from algorithms.Invigilation.main import start_invigilation_process
 from algorithms.InvigilationReports.main import start_invig_report_generation
@@ -103,6 +104,14 @@ def mailer_login_btn_clicked(event):
 def mailer_dir_picker_changed(evnet):
     frame.mailer_send_btn.Enable()
 
+def room_allotment_verify_btn_clicked(event):
+    # sys.stdout = frame.room_verify_log_box
+    # sys.stderr = frame.room_verify_log_box 
+    # frame.room_verify_log_box .ClearAll()
+    thread = threading.Thread(target=start_room_allotment_verify_process, args=("RoomAllotmentVerify",
+        frame.room_verify_picker.GetPath(), frame.course_enrol_picker.GetPath()))
+    thread.start()
+
 
 if __name__ == "__main__":
     app = wx.App(False)
@@ -120,5 +129,6 @@ if __name__ == "__main__":
         wx.EVT_DIRPICKER_CHANGED, mailer_dir_picker_changed)
     frame.report_generate_seat_charts_btn.Bind(
         wx.EVT_BUTTON, report_generate_seat_charts_btn_clicked)
+    frame.room_allotment_verify_btn.Bind(wx.EVT_BUTTON, room_allotment_verify_btn_clicked)
     frame.Show()
     app.MainLoop()

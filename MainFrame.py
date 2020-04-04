@@ -515,6 +515,72 @@ class MainFrame ( wx.Frame ):
 		bSizer2.Fit( self.m_panel61 )
 		self.m_notebook2.AddPage( self.m_panel61, u"About", False )
 
+
+		self.m_panel8 = wx.Panel( self.m_notebook2, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		gbSizer2 = wx.GridBagSizer( 20, 20 )
+		gbSizer2.SetFlexibleDirection( wx.BOTH )
+		gbSizer2.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+
+		self.m_staticText99 = wx.StaticText( self.m_panel8, wx.ID_ANY, u"*Room Allotment*", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText1.Wrap( -1 )
+
+		gbSizer2.Add( self.m_staticText99, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+		# self.room_csv_picker = wx.FilePickerCtrl( self.m_panel3, wx.ID_ANY, wx.EmptyString, u"Select a file", u"*.csv", wx.DefaultPosition, wx.Size( -1,-1 ), wx.FLP_DEFAULT_STYLE )
+		# gbSizer2.Add( self.room_csv_picker, wx.GBPosition( 0, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.EXPAND, 5 )
+
+		self.room_verify_picker = wx.FilePickerCtrl( self.m_panel8, wx.ID_ANY, wx.EmptyString, u"Select a file", u"*.csv", wx.DefaultPosition, wx.Size( -1,-1 ), wx.FLP_DEFAULT_STYLE )
+		gbSizer2.Add( self.room_verify_picker, wx.GBPosition( 0, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.EXPAND, 5 )
+		self.room_list_picker = wx.FilePickerCtrl( self.m_panel8, wx.ID_ANY, wx.EmptyString, u"Select a file", u"*.csv", wx.DefaultPosition, wx.Size( -1,-1 ), wx.FLP_DEFAULT_STYLE )
+		gbSizer2.Add( self.room_list_picker, wx.GBPosition( 1, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.EXPAND, 5 )
+		self.room_map_picker = wx.FilePickerCtrl( self.m_panel8, wx.ID_ANY, wx.EmptyString, u"Select a file", u"*.csv", wx.DefaultPosition, wx.Size( -1,-1 ), wx.FLP_DEFAULT_STYLE )
+		gbSizer2.Add( self.room_map_picker, wx.GBPosition( 2, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.EXPAND, 5 )
+
+
+		self.room_allotment_verify_btn = wx.Button( self.m_panel8, wx.ID_ANY, u"Verify", wx.DefaultPosition, wx.DefaultSize, 0 )
+		gbSizer2.Add( self.room_allotment_verify_btn, wx.GBPosition( 3, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+		self.room_verify_log_box = wx.stc.StyledTextCtrl(self.m_panel8, wx.ID_ANY, wx.DefaultPosition, wx.Size( -1,-1 ), 0)
+		self.room_verify_log_box.SetUseTabs ( True )
+		self.room_verify_log_box.SetTabWidth ( 4 )
+		self.room_verify_log_box.SetIndent ( 4 )
+		self.room_verify_log_box.SetTabIndents( True )
+		self.room_verify_log_box.SetBackSpaceUnIndents( True )
+		self.room_verify_log_box.SetViewEOL( False )
+		self.room_verify_log_box.SetViewWhiteSpace( False )
+		self.room_verify_log_box.SetMarginWidth( 2, 0 )
+		self.room_verify_log_box.SetIndentationGuides( True )
+		self.room_verify_log_box.SetMarginWidth( 1, 0 )
+		self.room_verify_log_box.SetMarginType( 0, wx.stc.STC_MARGIN_NUMBER );
+		self.room_verify_log_box.SetMarginWidth( 0, self.room_verify_log_box.TextWidth( wx.stc.STC_STYLE_LINENUMBER, "_99999" ) )
+		self.room_verify_log_box.MarkerDefine( wx.stc.STC_MARKNUM_FOLDER, wx.stc.STC_MARK_BOXPLUS )
+		self.room_verify_log_box.MarkerSetBackground( wx.stc.STC_MARKNUM_FOLDER, wx.BLACK)
+		self.room_verify_log_box.MarkerSetForeground( wx.stc.STC_MARKNUM_FOLDER, wx.WHITE)
+		self.room_verify_log_box.MarkerDefine( wx.stc.STC_MARKNUM_FOLDEROPEN, wx.stc.STC_MARK_BOXMINUS )
+		self.room_verify_log_box.MarkerSetBackground( wx.stc.STC_MARKNUM_FOLDEROPEN, wx.BLACK )
+		self.room_verify_log_box.MarkerSetForeground( wx.stc.STC_MARKNUM_FOLDEROPEN, wx.WHITE )
+		self.room_verify_log_box.MarkerDefine( wx.stc.STC_MARKNUM_FOLDERSUB, wx.stc.STC_MARK_EMPTY )
+		self.room_verify_log_box.MarkerDefine( wx.stc.STC_MARKNUM_FOLDEREND, wx.stc.STC_MARK_BOXPLUS )
+		self.room_verify_log_box.MarkerSetBackground( wx.stc.STC_MARKNUM_FOLDEREND, wx.BLACK )
+		self.room_verify_log_box.MarkerSetForeground( wx.stc.STC_MARKNUM_FOLDEREND, wx.WHITE )
+		self.room_verify_log_box.MarkerDefine( wx.stc.STC_MARKNUM_FOLDEROPENMID, wx.stc.STC_MARK_BOXMINUS )
+		self.room_verify_log_box.MarkerSetBackground( wx.stc.STC_MARKNUM_FOLDEROPENMID, wx.BLACK)
+		self.room_verify_log_box.MarkerSetForeground( wx.stc.STC_MARKNUM_FOLDEROPENMID, wx.WHITE)
+		self.room_verify_log_box.MarkerDefine( wx.stc.STC_MARKNUM_FOLDERMIDTAIL, wx.stc.STC_MARK_EMPTY )
+		self.room_verify_log_box.MarkerDefine( wx.stc.STC_MARKNUM_FOLDERTAIL, wx.stc.STC_MARK_EMPTY )
+		self.room_verify_log_box.SetSelBackground( True, wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT ) )
+		self.room_verify_log_box.SetSelForeground( True, wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHTTEXT ) )
+		gbSizer2.Add( self.room_verify_log_box, wx.GBPosition( 4, 0 ), wx.GBSpan( 1, 10 ), wx.EXPAND |wx.ALL, 5 )
+
+
+		gbSizer2.AddGrowableCol( 0 )
+		gbSizer2.AddGrowableCol( 1 )
+		gbSizer2.AddGrowableRow( 3 )
+
+		self.m_panel8.SetSizer( gbSizer2 )
+		self.m_panel8.Layout()
+		gbSizer2.Fit( self.m_panel8 )
+		self.m_notebook2.AddPage( self.m_panel8, u"Misc", True )
+
 		bSizer1.Add( self.m_notebook2, 1, wx.EXPAND |wx.ALL, 5 )
 
 
